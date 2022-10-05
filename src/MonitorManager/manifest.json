@@ -10,6 +10,17 @@
                 }
             ],
             "UUID": "com.geekyeggo.monitormanager.project"
+        },
+        {
+            "Icon": "Images/SetDisplayResolution/Icon",
+            "Name": "Display Resolution",
+            "PropertyInspectorPath": "pi/set-display-resolution.html",
+            "States": [
+                {
+                    "Image": "Images/SetDisplayResolution/Icon"
+                }
+            ],
+            "UUID": "com.geekyeggo.monitormanager.displayresolution"
         }
     ],
     "Author": "GeekyEggo",

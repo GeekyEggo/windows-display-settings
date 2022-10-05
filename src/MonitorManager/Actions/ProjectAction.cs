@@ -23,8 +23,7 @@ namespace MonitorManager.Actions
         /// <param name="context">The context.</param>
         /// <param name="displayService">The display service.</param>
         public ProjectAction(ActionInitializationContext context, DisplayService displayService)
-            : base(context)
-            => this.DisplayService = displayService;
+            : base(context) => this.DisplayService = displayService;
 
         /// <summary>
         /// Gets the display service.
