@@ -1,0 +1,32 @@
+﻿{
+    "Actions": [
+        {
+            "Icon": "Images/Project/Icon",
+            "Name": "Project",
+            "PropertyInspectorPath": "pi/project.html",
+            "States": [
+                {
+                    "Image": "Images/Project/Icon"
+                }
+            ],
+            "UUID": "com.geekyeggo.monitormanager.project"
+        }
+    ],
+    "Author": "GeekyEggo",
+    "Category": "Monitor Manager",
+    "CodePath": "MonitorManager.exe",
+    "Description": "Control your monitors with ease!",
+    "Icon": "",
+    "Name": "Monitor Manager",
+    "OS": [
+        {
+            "MinimumVersion": "10",
+            "Platform": "windows"
+        }
+    ],
+    "SDKVersion": 2,
+    "Software": {
+        "MinimumVersion": "5.0"
+    },
+    "Version": "1.0.0"
+}
