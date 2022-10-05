@@ -15,14 +15,14 @@ namespace MonitorManager.Actions
         Icon = "Images/Project/Icon",
         StateImage = "Images/Project/Icon",
         PropertyInspectorPath = "pi/project.html")]
-    public class ProjectAction : StreamDeckAction
+    public class Project : StreamDeckAction
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ProjectAction"/> class.
+        /// Initializes a new instance of the <see cref="Project"/> class.
         /// </summary>
         /// <param name="context">The context.</param>
         /// <param name="displayService">The display service.</param>
-        public ProjectAction(ActionInitializationContext context, DisplayService displayService)
+        public Project(ActionInitializationContext context, DisplayService displayService)
             : base(context) => this.DisplayService = displayService;
 
         /// <summary>
@@ -44,7 +44,7 @@ namespace MonitorManager.Actions
         }
 
         /// <summary>
-        /// Provides settings for the <see cref="ProjectAction"/>.
+        /// Provides settings for the <see cref="Actions.Project"/>.
         /// </summary>
         public record Settings([property: JsonConverter(typeof(ProjectOptionConverter))] ProjectOption? Project);
     }

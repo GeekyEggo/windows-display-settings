@@ -11,17 +11,17 @@ namespace MonitorManager.Actions
     /// Provides an action capable of setting the resolution of a display.
     /// </summary>
     [Action(
-        Name = "Display Resolution",
+        Name = "Resolution",
         Icon = "Images/SetDisplayResolution/Icon",
         StateImage = "Images/SetDisplayResolution/Icon",
         PropertyInspectorPath = "pi/set-display-resolution.html")]
-    public class SetDisplayResolutionAction : StreamDeckAction
+    public class SetDisplayResolution : StreamDeckAction
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="SetDisplayResolutionAction"/> class.
+        /// Initializes a new instance of the <see cref="SetDisplayResolution"/> class.
         /// </summary>
         /// <param name="context">The action's initialization context.</param>
-        public SetDisplayResolutionAction(ActionInitializationContext context, DisplayService displayService)
+        public SetDisplayResolution(ActionInitializationContext context, DisplayService displayService)
             : base(context) => this.DisplayService = displayService;
 
         /// <summary>

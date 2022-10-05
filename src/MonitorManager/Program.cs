@@ -2,7 +2,9 @@ using Microsoft.Extensions.DependencyInjection;
 using MonitorManager.Services;
 using StreamDeck.Extensions.PropertyInspectors;
 
-[assembly: Manifest(Category = "Monitor Manager")]
+[assembly: Manifest(
+    Category = "Display Settings",
+    CategoryIcon = "Images/Plugin/CategoryIcon")]
 
 #if DEBUG
 if (!System.Diagnostics.Debugger.IsAttached)
