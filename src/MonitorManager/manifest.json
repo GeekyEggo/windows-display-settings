@@ -1,25 +1,14 @@
 ﻿{
     "Actions": [
         {
-            "Icon": "Images/Project/Icon",
-            "Name": "Project",
-            "PropertyInspectorPath": "pi/project.html",
+            "Icon": "Images/SetScale/Icon",
+            "Name": "Scale",
             "States": [
                 {
-                    "Image": "Images/Project/Icon"
+                    "Image": "Images/SetScale/Icon"
                 }
             ],
-            "UUID": "com.geekyeggo.monitormanager.project"
-        },
-        {
-            "Icon": "Images/SetDisplayOrientation/Icon",
-            "Name": "Orientation",
-            "States": [
-                {
-                    "Image": "Images/SetDisplayOrientation/Icon"
-                }
-            ],
-            "UUID": "com.geekyeggo.monitormanager.orientation"
+            "UUID": "com.geekyeggo.monitormanager.scale"
         },
         {
             "Icon": "Images/SetDisplayResolution/Icon",
@@ -33,14 +22,25 @@
             "UUID": "com.geekyeggo.monitormanager.resolution"
         },
         {
-            "Icon": "Images/SetScale/Icon",
-            "Name": "Scale",
+            "Icon": "Images/SetDisplayOrientation/Icon",
+            "Name": "Orientation",
             "States": [
                 {
-                    "Image": "Images/SetScale/Icon"
+                    "Image": "Images/SetDisplayOrientation/Icon"
                 }
             ],
-            "UUID": "com.geekyeggo.monitormanager.scale"
+            "UUID": "com.geekyeggo.monitormanager.orientation"
+        },
+        {
+            "Icon": "Images/Project/Icon",
+            "Name": "Project",
+            "PropertyInspectorPath": "pi/project.html",
+            "States": [
+                {
+                    "Image": "Images/Project/Icon"
+                }
+            ],
+            "UUID": "com.geekyeggo.monitormanager.project"
         }
     ],
     "Author": "GeekyEggo",
