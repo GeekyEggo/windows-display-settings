@@ -7,9 +7,9 @@
     <Nullable>enable</Nullable>
 
     <Authors>GeekyEggo</Authors>
-    <Product>Monitor Manager</Product>
-    <Description>Control your monitors with ease!</Description>
-    <Version>1.0.0</Version>
+    <Product>Display Settings</Product>
+    <Description>Control your display settings with ease!</Description>
+    <Version>1.0.1</Version>
   </PropertyGroup>
 
   <ItemGroup>

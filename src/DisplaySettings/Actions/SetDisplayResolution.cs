@@ -1,10 +1,10 @@
-namespace MonitorManager.Actions
+namespace DisplaySettings.Actions
 {
     using System;
     using System.Text.Json.Serialization;
     using System.Threading.Tasks;
-    using MonitorManager.Serialization;
-    using MonitorManager.Services;
+    using DisplaySettings.Serialization;
+    using DisplaySettings.Services;
     using StreamDeck.Events;
 
     /// <summary>

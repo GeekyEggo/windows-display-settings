@@ -1,4 +1,4 @@
-namespace MonitorManager.Actions
+namespace DisplaySettings.Actions
 {
     [Action(
         Name = "Orientation",

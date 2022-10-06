@@ -1,0 +1,62 @@
+﻿{
+    "Actions": [
+        {
+            "Icon": "Images/SetDisplayOrientation/Icon",
+            "Name": "Orientation",
+            "States": [
+                {
+                    "Image": "Images/SetDisplayOrientation/Icon"
+                }
+            ],
+            "UUID": "com.geekyeggo.displaysettings.orientation"
+        },
+        {
+            "Icon": "Images/Project/Icon",
+            "Name": "Project",
+            "PropertyInspectorPath": "pi/project.html",
+            "States": [
+                {
+                    "Image": "Images/Project/Icon"
+                }
+            ],
+            "UUID": "com.geekyeggo.displaysettings.project"
+        },
+        {
+            "Icon": "Images/SetDisplayResolution/Icon",
+            "Name": "Resolution",
+            "PropertyInspectorPath": "pi/set-display-resolution.html",
+            "States": [
+                {
+                    "Image": "Images/SetDisplayResolution/Icon"
+                }
+            ],
+            "UUID": "com.geekyeggo.displaysettings.resolution"
+        },
+        {
+            "Icon": "Images/SetScale/Icon",
+            "Name": "Scale",
+            "States": [
+                {
+                    "Image": "Images/SetScale/Icon"
+                }
+            ],
+            "UUID": "com.geekyeggo.displaysettings.scale"
+        }
+    ],
+    "Author": "GeekyEggo",
+    "CodePath": "DisplaySettings.exe",
+    "Description": "Control your display settings with ease!",
+    "Icon": "",
+    "Name": "Display Settings",
+    "OS": [
+        {
+            "MinimumVersion": "10",
+            "Platform": "windows"
+        }
+    ],
+    "SDKVersion": 2,
+    "Software": {
+        "MinimumVersion": "5.0"
+    },
+    "Version": "1.0.1"
+}

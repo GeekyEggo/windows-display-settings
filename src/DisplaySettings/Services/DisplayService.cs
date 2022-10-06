@@ -1,10 +1,10 @@
-namespace MonitorManager.Services
+namespace DisplaySettings.Services
 {
     using System.Collections.Generic;
     using System.Management;
     using System.Runtime.InteropServices;
     using System.Runtime.Versioning;
-    using MonitorManager.Interop;
+    using DisplaySettings.Interop;
     using StreamDeck.Extensions.PropertyInspectors;
     using WindowsDisplayAPI;
 

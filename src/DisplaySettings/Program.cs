@@ -1,5 +1,5 @@
 using Microsoft.Extensions.DependencyInjection;
-using MonitorManager.Services;
+using DisplaySettings.Services;
 using StreamDeck.Extensions.PropertyInspectors;
 
 [assembly: Manifest(

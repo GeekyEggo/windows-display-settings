@@ -1,4 +1,4 @@
-namespace MonitorManager.Services
+namespace DisplaySettings.Services
 {
     using System;
     using System.Diagnostics.CodeAnalysis;

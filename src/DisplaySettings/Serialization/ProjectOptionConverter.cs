@@ -1,9 +1,9 @@
-namespace MonitorManager.Serialization
+namespace DisplaySettings.Serialization
 {
     using System;
     using System.Text.Json;
     using System.Text.Json.Serialization;
-    using MonitorManager.Services;
+    using DisplaySettings.Services;
 
     /// <summary>
     /// Provides a <see cref="JsonConverter"/> that converts to/from <see cref="ProjectOption"/>.

@@ -1,4 +1,4 @@
-namespace MonitorManager.Services
+namespace DisplaySettings.Services
 {
     /// <summary>
     /// Provides possible projections.

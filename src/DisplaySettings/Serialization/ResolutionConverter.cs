@@ -1,9 +1,9 @@
-namespace MonitorManager.Serialization
+namespace DisplaySettings.Serialization
 {
     using System;
     using System.Text.Json;
     using System.Text.Json.Serialization;
-    using MonitorManager.Services;
+    using DisplaySettings.Services;
 
     internal class ResolutionConverter : JsonConverter<Resolution?>
     {

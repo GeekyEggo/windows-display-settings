@@ -1,4 +1,4 @@
-namespace MonitorManager.Interop
+namespace DisplaySettings.Interop
 {
     using System.Runtime.InteropServices;
 
