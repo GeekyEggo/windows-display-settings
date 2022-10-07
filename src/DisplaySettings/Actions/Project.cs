@@ -6,6 +6,7 @@ namespace DisplaySettings.Actions
     using DisplaySettings.Serialization;
     using DisplaySettings.Services;
     using StreamDeck.Events;
+    using WindowsDisplayAPI.Native.DisplayConfig;
 
     /// <summary>
     /// Provides an action capable of setting the display configuration, i.e. "Extend", "Clone" etc.
@@ -33,9 +34,10 @@ namespace DisplaySettings.Actions
         /// <inheritdoc/>
         protected override async Task OnKeyDown(ActionEventArgs<KeyPayload> args)
         {
-            if (args.Payload.GetSettings<Settings>()?.Project is ProjectOption value)
+            if (args.Payload.GetSettings<Settings>() is { Project: not null } settings)
             {
-                this.DisplayService.SetDisplayConfig(value);
+                this.DisplayService.SetDisplayConfig(settings.Project.Value);
+                await this.ShowOkAsync();
             }
             else
             {
@@ -46,6 +48,6 @@ namespace DisplaySettings.Actions
         /// <summary>
         /// Provides settings for the <see cref="Actions.Project"/>.
         /// </summary>
-        public record Settings([property: JsonConverter(typeof(ProjectOptionConverter))] ProjectOption? Project);
+        public record Settings([property: JsonConverter(typeof(DisplayConfigTopologyIdConverter))] DisplayConfigTopologyId? Project);
     }
 }

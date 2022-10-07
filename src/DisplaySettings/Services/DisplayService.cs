@@ -2,11 +2,13 @@ namespace DisplaySettings.Services
 {
     using System.Collections.Generic;
     using System.Management;
-    using System.Runtime.InteropServices;
     using System.Runtime.Versioning;
-    using DisplaySettings.Interop;
+    using DisplaySettings.Extensions;
     using StreamDeck.Extensions.PropertyInspectors;
     using WindowsDisplayAPI;
+    using WindowsDisplayAPI.DisplayConfig;
+    using WindowsDisplayAPI.Native.DeviceContext;
+    using WindowsDisplayAPI.Native.DisplayConfig;
 
     /// <summary>
     /// Provides methods and interaction for displays.
@@ -47,44 +49,51 @@ namespace DisplaySettings.Services
         /// Sets the display configuration, i.e. "Clone", "Extend", etc..
         /// </summary>
         /// <param name="value">The desired projection.</param>
-        public void SetDisplayConfig(ProjectOption value)
+        public void SetDisplayConfig(DisplayConfigTopologyId value)
         {
-            if (value is not ProjectOption.Clone
-                and not ProjectOption.Extend
-                and not ProjectOption.External
-                and not ProjectOption.Internal)
+            if (value is not DisplayConfigTopologyId.Clone
+                and not DisplayConfigTopologyId.Extend
+                and not DisplayConfigTopologyId.External
+                and not DisplayConfigTopologyId.Internal)
             {
                 throw new ArgumentOutOfRangeException(nameof(value), "The prefered projection is not a valid option.");
             }
 
-            User32.SetDisplayConfig(0, IntPtr.Zero, 0, IntPtr.Zero, (User32.SDC_APPLY | (uint)value));
+            PathInfo.ApplyTopology(value, true);
         }
 
         /// <summary>
-        /// Sets the <paramref name="resolution"/> of the device.
+        /// Sets the <paramref name="orientation"/> of the display.
         /// </summary>
-        /// <param name="deviceName">Name of the device.</param>
+        /// <param name="deviceName">Name of the display device.</param>
+        /// <param name="orientation">The orientation.</param>
+        /// <returns><c>true</c> when the orientation was successfully set; otherwise <c>false</c>.</returns>
+        public bool SetOrientation(string deviceName, DisplayOrientation orientation)
+        {
+            if (Display.GetDisplays().FirstOrDefault(d => d.DisplayName == deviceName) is Display display and not null)
+            {
+                display.SetSettings(orientation: orientation);
+                return true;
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// Sets the <paramref name="resolution"/> of the display.
+        /// </summary>
+        /// <param name="deviceName">Name of the display device.</param>
         /// <param name="resolution">The resolution.</param>
         /// <returns><c>true</c> when the resolution was successfully set; otherwise <c>false</c>.</returns>
         public bool SetResolution(string deviceName, Resolution resolution)
         {
-            // todo: Add support for rotated monitors.
-            var dm = new DEVMODE();
-            dm.dmDeviceName = new string(new char[32]);
-            dm.dmFormName = new string(new char[32]);
-            dm.dmSize = (short)Marshal.SizeOf(dm);
-
-            if (User32.EnumDisplaySettings(deviceName, User32.ENUM_CURRENT_SETTINGS, ref dm) != 0)
+            if (Display.GetDisplays().FirstOrDefault(d => d.DisplayName == deviceName) is Display display and not null)
             {
-                dm.dmPelsWidth = resolution.Width;
-                dm.dmPelsHeight = resolution.Height;
+                display.SetSettings(resolution);
+                return true;
+            }
 
-                return User32.ChangeDisplaySettings(ref dm, 0) == User32.DISP_CHANGE_SUCCESSFUL;
-            }
-            else
-            {
-                return false;
-            }
+            return false;
         }
 
         /// <summary>

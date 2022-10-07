@@ -64,6 +64,14 @@ namespace DisplaySettings.Services
         }
 
         /// <summary>
+        /// Performs an implicit conversion from <see cref="Resolution"/> to <see cref="System.Drawing.Size"/>.
+        /// </summary>
+        /// <param name="resolution">The resolution.</param>
+        /// <returns>The result of the conversion.</returns>
+        public static implicit operator System.Drawing.Size(Resolution resolution)
+            => new System.Drawing.Size(resolution.Width, resolution.Height);
+
+        /// <summary>
         /// Gets the width.
         /// </summary>
         public int Width { get; }

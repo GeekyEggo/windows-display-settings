@@ -32,10 +32,7 @@ namespace DisplaySettings.Actions
         /// <inheritdoc/>
         protected override async Task OnKeyDown(ActionEventArgs<KeyPayload> args)
         {
-            var settings = args.Payload.GetSettings<Settings>();
-
-            if (settings?.DeviceName is not null
-                && settings.Resolution is not null
+            if (args.Payload.GetSettings<Settings>() is { DeviceName: not null, Resolution: not null } settings
                 && this.DisplayService.SetResolution(settings.DeviceName, settings.Resolution.Value))
             {
                 await this.ShowOkAsync();
@@ -46,6 +43,9 @@ namespace DisplaySettings.Actions
             }
         }
 
+        /// <summary>
+        /// Provides settings for the <see cref="SetDisplayResolution"/>.
+        /// </summary>
         public record Settings(string? DeviceName, [property: JsonConverter(typeof(ResolutionConverter))] Resolution? Resolution);
     }
 }

@@ -1,16 +1,6 @@
 ﻿{
     "Actions": [
         {
-            "Icon": "Images/SetDisplayOrientation/Icon",
-            "Name": "Orientation",
-            "States": [
-                {
-                    "Image": "Images/SetDisplayOrientation/Icon"
-                }
-            ],
-            "UUID": "com.geekyeggo.displaysettings.orientation"
-        },
-        {
             "Icon": "Images/Project/Icon",
             "Name": "Project",
             "PropertyInspectorPath": "pi/project.html",
@@ -20,6 +10,17 @@
                 }
             ],
             "UUID": "com.geekyeggo.displaysettings.project"
+        },
+        {
+            "Icon": "Images/SetDisplayOrientation/Icon",
+            "Name": "Orientation",
+            "PropertyInspectorPath": "pi/set-display-orientation.html",
+            "States": [
+                {
+                    "Image": "Images/SetDisplayOrientation/Icon"
+                }
+            ],
+            "UUID": "com.geekyeggo.displaysettings.orientation"
         },
         {
             "Icon": "Images/SetDisplayResolution/Icon",
@@ -44,6 +45,8 @@
         }
     ],
     "Author": "GeekyEggo",
+    "Category": "Display Settings",
+    "CategoryIcon": "Images/Plugin/CategoryIcon",
     "CodePath": "DisplaySettings.exe",
     "Description": "Control your display settings with ease!",
     "Icon": "",
