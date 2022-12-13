@@ -1,6 +1,17 @@
 ﻿{
     "Actions": [
         {
+            "Icon": "Images/SetDisplayResolution/Icon",
+            "Name": "Resolution",
+            "PropertyInspectorPath": "pi/set-display-resolution.html",
+            "States": [
+                {
+                    "Image": "Images/SetDisplayResolution/Icon"
+                }
+            ],
+            "UUID": "com.geekyeggo.displaysettings.resolution"
+        },
+        {
             "Icon": "Images/Project/Icon",
             "Name": "Project",
             "PropertyInspectorPath": "pi/project.html",
@@ -23,15 +34,14 @@
             "UUID": "com.geekyeggo.displaysettings.orientation"
         },
         {
-            "Icon": "Images/SetDisplayResolution/Icon",
-            "Name": "Resolution",
-            "PropertyInspectorPath": "pi/set-display-resolution.html",
+            "Icon": "Images/SetScale/Icon",
+            "Name": "Scale",
             "States": [
                 {
-                    "Image": "Images/SetDisplayResolution/Icon"
+                    "Image": "Images/SetScale/Icon"
                 }
             ],
-            "UUID": "com.geekyeggo.displaysettings.resolution"
+            "UUID": "com.geekyeggo.displaysettings.scale"
         },
         {
             "Icon": "Images/SetDisplayOrientation/Icon",
@@ -43,16 +53,6 @@
                 }
             ],
             "UUID": "com.geekyeggo.displaysettings.hdr"
-        },
-        {
-            "Icon": "Images/SetScale/Icon",
-            "Name": "Scale",
-            "States": [
-                {
-                    "Image": "Images/SetScale/Icon"
-                }
-            ],
-            "UUID": "com.geekyeggo.displaysettings.scale"
         }
     ],
     "Author": "GeekyEggo",

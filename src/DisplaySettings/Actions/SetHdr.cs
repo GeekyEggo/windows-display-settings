@@ -14,6 +14,12 @@ namespace DisplaySettings.Actions
         PropertyInspectorPath = "pi/set-hdr.html")]
     public class SetHdr : StreamDeckAction
     {
+        /*
+         * Todo:
+         * - Create an icon.
+         * - Document.
+         * - Remove the display service.
+         */
         public SetHdr(ActionInitializationContext context, DisplayService displayService)
             : base(context) => this.DisplayService = displayService;
 
