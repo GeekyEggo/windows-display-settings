@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<head lang="en-gb">
+    <meta charset="utf-8" />
+    <script src="sdpi-components.js"></script>
+</head>
+<html>
+<body>
+    <sdpi-item label="Display">
+        <sdpi-select setting="deviceName" loading="Loading..." datasource="getDisplays" placeholder="Please select"></sdpi-select>
+    </sdpi-item>
+    <sdpi-item label="HDR">
+        <sdpi-select setting="action" value-type="number">
+            <option value="0">Toggle</option>
+            <option value="1">On</option>
+            <option value="2">Off</option>
+        </sdpi-select>
+    </sdpi-item>
+</body>
+</html>

@@ -34,6 +34,17 @@
             "UUID": "com.geekyeggo.displaysettings.resolution"
         },
         {
+            "Icon": "Images/SetDisplayOrientation/Icon",
+            "Name": "HDR",
+            "PropertyInspectorPath": "pi/set-hdr.html",
+            "States": [
+                {
+                    "Image": "Images/SetDisplayOrientation/Icon"
+                }
+            ],
+            "UUID": "com.geekyeggo.displaysettings.hdr"
+        },
+        {
             "Icon": "Images/SetScale/Icon",
             "Name": "Scale",
             "States": [
