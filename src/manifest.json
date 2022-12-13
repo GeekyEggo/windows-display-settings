@@ -46,7 +46,7 @@
         }
     ],
     "Author": "GeekyEggo",
-    "Category": "Display Settings",
+    "Category": "Windows Display Settings",
     "CategoryIcon": "Images/Plugin/CategoryIcon",
     "CodePath": "WindowsDisplaySettings.exe",
     "Description": "Control your Windows display settings with ease, including HDR control, changing the resolution, and projection!",

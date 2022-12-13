@@ -1,7 +1,7 @@
 using DisplaySettings.Services;
 
 [assembly: Manifest(
-    Category = "Display Settings",
+    Category = "Windows Display Settings",
     CategoryIcon = "Images/Plugin/CategoryIcon",
     Icon = "Images/Plugin/Icon")]
 
@@ -14,5 +14,6 @@ if (!System.Diagnostics.Debugger.IsAttached)
 
 StreamDeckPlugin.Create()
     .MapPropertyInspectorDataSource("getDisplays", () => DisplayService.GetDisplays())
+    .MapPropertyInspectorDataSource("getDisplaysWithHdrSupport", () => DisplayService.GetDisplaysWithHdrSupport())
     .MapPropertyInspectorDataSource("getResolutions", () => DisplayService.GetResolutions())
     .RunPlugin();

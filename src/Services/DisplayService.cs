@@ -4,6 +4,7 @@ namespace DisplaySettings.Services
     using System.Diagnostics.CodeAnalysis;
     using System.Management;
     using System.Runtime.Versioning;
+    using DisplaySettings.Extensions;
     using StreamDeck.Extensions.PropertyInspectors;
     using WindowsDisplayAPI;
 
@@ -23,11 +24,22 @@ namespace DisplaySettings.Services
         /// </summary>
         /// <returns>The displays.</returns>
         public static IEnumerable<DataSourceItem> GetDisplays()
+            => Display.GetDisplays().Select(ToDataSourceItem);
+
+        /// <summary>
+        /// Gets the displays with HDR support.
+        /// </summary>
+        /// <returns>The displays.</returns>
+        public static IEnumerable<DataSourceItem> GetDisplaysWithHdrSupport()
         {
-            foreach (var display in Display.GetDisplays())
-            {
-                yield return new DataSourceItem(display.DisplayName, display.ToPathDisplayTarget().FriendlyName, disabled: !display.IsAvailable);
-            }
+            var items = Display.GetDisplays()
+                .Where(d => d.GetAdvancedColorInfo() is { AdvancedColorSupported: true })
+                .Select(ToDataSourceItem)
+                .ToArray();
+
+            return items.Length > 0
+                ? items
+                : new[] { new DataSourceItem(string.Empty, label: "No HDR displays found", disabled: true) };
         }
 
         /// <summary>
@@ -59,6 +71,9 @@ namespace DisplaySettings.Services
             value = default;
             return false;
         }
+
+        private static DataSourceItem ToDataSourceItem(Display display)
+            => new DataSourceItem(display.DisplayName, display.ToPathDisplayTarget().FriendlyName, disabled: !display.IsAvailable);
 
         /// <summary>
         /// Loads the available resolutions.
