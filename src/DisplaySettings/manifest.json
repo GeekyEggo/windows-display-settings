@@ -1,6 +1,17 @@
 ﻿{
     "Actions": [
         {
+            "Icon": "Images/SetDisplayOrientation/Icon",
+            "Name": "Orientation",
+            "PropertyInspectorPath": "pi/set-display-orientation.html",
+            "States": [
+                {
+                    "Image": "Images/SetDisplayOrientation/Icon"
+                }
+            ],
+            "UUID": "com.geekyeggo.displaysettings.orientation"
+        },
+        {
             "Icon": "Images/SetDisplayResolution/Icon",
             "Name": "Resolution",
             "PropertyInspectorPath": "pi/set-display-resolution.html",
@@ -23,36 +34,15 @@
             "UUID": "com.geekyeggo.displaysettings.project"
         },
         {
-            "Icon": "Images/SetDisplayOrientation/Icon",
-            "Name": "Orientation",
-            "PropertyInspectorPath": "pi/set-display-orientation.html",
+            "Icon": "Images/SetAdvancedColor/Icon",
+            "Name": "Use HDR",
+            "PropertyInspectorPath": "pi/set-advanced-color.html",
             "States": [
                 {
-                    "Image": "Images/SetDisplayOrientation/Icon"
+                    "Image": "Images/SetAdvancedColor/Icon"
                 }
             ],
-            "UUID": "com.geekyeggo.displaysettings.orientation"
-        },
-        {
-            "Icon": "Images/SetScale/Icon",
-            "Name": "Scale",
-            "States": [
-                {
-                    "Image": "Images/SetScale/Icon"
-                }
-            ],
-            "UUID": "com.geekyeggo.displaysettings.scale"
-        },
-        {
-            "Icon": "Images/SetDisplayOrientation/Icon",
-            "Name": "HDR",
-            "PropertyInspectorPath": "pi/set-hdr.html",
-            "States": [
-                {
-                    "Image": "Images/SetDisplayOrientation/Icon"
-                }
-            ],
-            "UUID": "com.geekyeggo.displaysettings.hdr"
+            "UUID": "com.geekyeggo.displaysettings.usehdr"
         }
     ],
     "Author": "GeekyEggo",
@@ -72,5 +62,5 @@
     "Software": {
         "MinimumVersion": "5.0"
     },
-    "Version": "1.0.1"
+    "Version": "1.0.0"
 }

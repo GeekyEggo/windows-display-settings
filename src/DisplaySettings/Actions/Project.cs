@@ -1,11 +1,8 @@
 namespace DisplaySettings.Actions
 {
     using System;
-    using System.Text.Json.Serialization;
     using System.Threading.Tasks;
-    using DisplaySettings.Serialization;
-    using DisplaySettings.Services;
-    using StreamDeck.Events;
+    using WindowsDisplayAPI.DisplayConfig;
     using WindowsDisplayAPI.Native.DisplayConfig;
 
     /// <summary>
@@ -15,28 +12,26 @@ namespace DisplaySettings.Actions
         Name = "Project",
         Icon = "Images/Project/Icon",
         StateImage = "Images/Project/Icon",
-        PropertyInspectorPath = "pi/project.html")]
+        PropertyInspectorPath = "pi/project.html",
+        SortIndex = 1)]
     public class Project : StreamDeckAction
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Project"/> class.
         /// </summary>
         /// <param name="context">The context.</param>
-        /// <param name="displayService">The display service.</param>
-        public Project(ActionInitializationContext context, DisplayService displayService)
-            : base(context) => this.DisplayService = displayService;
-
-        /// <summary>
-        /// Gets the display service.
-        /// </summary>
-        private DisplayService DisplayService { get; }
+        public Project(ActionInitializationContext context)
+            : base(context)
+        {
+        }
 
         /// <inheritdoc/>
         protected override async Task OnKeyDown(ActionEventArgs<KeyPayload> args)
         {
-            if (args.Payload.GetSettings<Settings>() is { Project: not null } settings)
+            if (args.Payload.GetSettings<Settings>() is { Project: not null } settings
+                && settings.Project is DisplayConfigTopologyId.Clone or DisplayConfigTopologyId.Extend or DisplayConfigTopologyId.External or DisplayConfigTopologyId.Internal)
             {
-                this.DisplayService.SetDisplayConfig(settings.Project.Value);
+                PathInfo.ApplyTopology(settings.Project.Value, true);
                 await this.ShowOkAsync();
             }
             else
@@ -48,6 +43,6 @@ namespace DisplaySettings.Actions
         /// <summary>
         /// Provides settings for the <see cref="Actions.Project"/>.
         /// </summary>
-        public record Settings([property: JsonConverter(typeof(DisplayConfigTopologyIdConverter))] DisplayConfigTopologyId? Project);
+        public record Settings(DisplayConfigTopologyId? Project);
     }
 }

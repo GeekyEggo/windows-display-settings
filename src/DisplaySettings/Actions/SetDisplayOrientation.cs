@@ -1,38 +1,34 @@
 namespace DisplaySettings.Actions
 {
-    using System.Text.Json.Serialization;
     using System.Threading.Tasks;
-    using DisplaySettings.Serialization;
+    using DisplaySettings.Extensions;
     using DisplaySettings.Services;
-    using StreamDeck.Events;
     using WindowsDisplayAPI.Native.DeviceContext;
 
     [Action(
         Name = "Orientation",
         Icon = "Images/SetDisplayOrientation/Icon",
         StateImage = "Images/SetDisplayOrientation/Icon",
-        PropertyInspectorPath = "pi/set-display-orientation.html")]
+        PropertyInspectorPath = "pi/set-display-orientation.html",
+        SortIndex = 2)]
     public class SetDisplayOrientation : StreamDeckAction
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="SetDisplayOrientation"/> class.
         /// </summary>
         /// <param name="context">The context.</param>
-        /// <param name="displayService">The display service.</param>
-        public SetDisplayOrientation(ActionInitializationContext context, DisplayService displayService)
-            : base(context) => this.DisplayService = displayService;
-
-        /// <summary>
-        /// Gets the display service.
-        /// </summary>
-        private DisplayService DisplayService { get; }
+        public SetDisplayOrientation(ActionInitializationContext context)
+            : base(context)
+        {
+        }
 
         /// <inheritdoc/>
         protected override async Task OnKeyDown(ActionEventArgs<KeyPayload> args)
         {
-            if (args.Payload.GetSettings<Settings>() is { DeviceName: not null, Orientation: not null } settings
-                && this.DisplayService.SetOrientation(settings.DeviceName, settings.Orientation.Value))
+            if (args.Payload.GetSettings<Settings>() is { DisplayName: not null, Orientation: not null } settings
+                && DisplayService.TryGetDisplay(settings.DisplayName, out var display))
             {
+                display.SetSettings(orientation: settings.Orientation.Value);
                 await this.ShowOkAsync();
             }
             else
@@ -44,6 +40,6 @@ namespace DisplaySettings.Actions
         /// <summary>
         /// Provides settings for the <see cref="SetDisplayOrientation"/>.
         /// </summary>
-        public record Settings(string? DeviceName, [property: JsonConverter(typeof(DisplayOrientationConverter))] DisplayOrientation? Orientation);
+        public record Settings(string? DisplayName, DisplayOrientation? Orientation);
     }
 }

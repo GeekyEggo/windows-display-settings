@@ -1,6 +1,4 @@
-using Microsoft.Extensions.DependencyInjection;
 using DisplaySettings.Services;
-using StreamDeck.Extensions.PropertyInspectors;
 
 [assembly: Manifest(
     Category = "Display Settings",
@@ -13,11 +11,7 @@ if (!System.Diagnostics.Debugger.IsAttached)
 }
 #endif
 
-var builder = StreamDeckPlugin.CreateBuilder();
-builder.ConfigureServices(s => s.AddSingleton<DisplayService>());
-
-var plugin = builder.Build();
-plugin.MapPropertyInspectorDataSource("getDisplays", (DisplayService displayService) => displayService.GetDisplays());
-plugin.MapPropertyInspectorDataSource("getResolutions", (DisplayService displayService) => displayService.GetResolutions());
-
-plugin.RunPlugin();
+StreamDeckPlugin.Create()
+    .MapPropertyInspectorDataSource("getDisplays", () => DisplayService.GetDisplays())
+    .MapPropertyInspectorDataSource("getResolutions", () => DisplayService.GetResolutions())
+    .RunPlugin();

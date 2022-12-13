@@ -1,20 +1,17 @@
 namespace DisplaySettings.Services
 {
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.Management;
     using System.Runtime.Versioning;
-    using DisplaySettings.Extensions;
     using StreamDeck.Extensions.PropertyInspectors;
     using WindowsDisplayAPI;
-    using WindowsDisplayAPI.DisplayConfig;
-    using WindowsDisplayAPI.Native.DeviceContext;
-    using WindowsDisplayAPI.Native.DisplayConfig;
 
     /// <summary>
     /// Provides methods and interaction for displays.
     /// </summary>
     [SupportedOSPlatform("windows")]
-    public class DisplayService
+    public static class DisplayService
     {
         /// <summary>
         /// Gets the cache containing the resolutions.
@@ -25,7 +22,7 @@ namespace DisplaySettings.Services
         /// Gets the available displays.
         /// </summary>
         /// <returns>The displays.</returns>
-        public IEnumerable<DataSourceItem> GetDisplays()
+        public static IEnumerable<DataSourceItem> GetDisplays()
         {
             foreach (var display in Display.GetDisplays())
             {
@@ -37,7 +34,7 @@ namespace DisplaySettings.Services
         /// Gets the available resolutions.
         /// </summary>
         /// <returns>The resolutions.</returns>
-        public IEnumerable<DataSourceItem> GetResolutions()
+        public static IEnumerable<DataSourceItem> GetResolutions()
         {
             foreach (var resolution in Resolutions.Value)
             {
@@ -46,53 +43,20 @@ namespace DisplaySettings.Services
         }
 
         /// <summary>
-        /// Sets the display configuration, i.e. "Clone", "Extend", etc..
+        /// Gets the display that matches the <paramref name="displayName"/>
         /// </summary>
-        /// <param name="value">The desired projection.</param>
-        public void SetDisplayConfig(DisplayConfigTopologyId value)
+        /// <param name="displayName">The display name.</param>
+        /// <param name="value">The display.</param>
+        /// <returns><c>true</c> when the display was found; otherwise <c>false</c>.</returns>
+        public static bool TryGetDisplay(string displayName, [NotNullWhen(true)] out Display? value)
         {
-            if (value is not DisplayConfigTopologyId.Clone
-                and not DisplayConfigTopologyId.Extend
-                and not DisplayConfigTopologyId.External
-                and not DisplayConfigTopologyId.Internal)
+            if (Display.GetDisplays().FirstOrDefault(d => d.DisplayName == displayName) is Display display and not null)
             {
-                throw new ArgumentOutOfRangeException(nameof(value), "The prefered projection is not a valid option.");
-            }
-
-            PathInfo.ApplyTopology(value, true);
-        }
-
-        /// <summary>
-        /// Sets the <paramref name="orientation"/> of the display.
-        /// </summary>
-        /// <param name="deviceName">Name of the display device.</param>
-        /// <param name="orientation">The orientation.</param>
-        /// <returns><c>true</c> when the orientation was successfully set; otherwise <c>false</c>.</returns>
-        public bool SetOrientation(string deviceName, DisplayOrientation orientation)
-        {
-            if (Display.GetDisplays().FirstOrDefault(d => d.DisplayName == deviceName) is Display display and not null)
-            {
-                display.SetSettings(orientation: orientation);
+                value = display;
                 return true;
             }
 
-            return false;
-        }
-
-        /// <summary>
-        /// Sets the <paramref name="resolution"/> of the display.
-        /// </summary>
-        /// <param name="deviceName">Name of the display device.</param>
-        /// <param name="resolution">The resolution.</param>
-        /// <returns><c>true</c> when the resolution was successfully set; otherwise <c>false</c>.</returns>
-        public bool SetResolution(string deviceName, Resolution resolution)
-        {
-            if (Display.GetDisplays().FirstOrDefault(d => d.DisplayName == deviceName) is Display display and not null)
-            {
-                display.SetSettings(resolution);
-                return true;
-            }
-
+            value = default;
             return false;
         }
 

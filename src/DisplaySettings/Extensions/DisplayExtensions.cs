@@ -12,7 +12,13 @@ namespace DisplaySettings.Extensions
     /// </summary>
     public static class DisplayExtensions
     {
-        public static DisplayAdvancedColorInfo GetAdvancedColorInfo(this Display display)
+        /// <summary>
+        /// Gets the advanced color information (HDR) for the <see cref="Display"/>.
+        /// </summary>
+        /// <param name="display">The <see cref="Display"/>.</param>
+        /// <returns>The advanced color information.</returns>
+        /// <remarks>Thanks to <see href="https://github.com/BartoszCichecki/LenovoLegionToolkit"/>.</remarks>
+        public static AdvancedColorInfo GetAdvancedColorInfo(this Display display)
         {
             var getAdvancedColorInfo = new DISPLAYCONFIG_GET_ADVANCED_COLOR_INFO();
             getAdvancedColorInfo.header.type = DISPLAYCONFIG_DEVICE_INFO_TYPE.DISPLAYCONFIG_DEVICE_INFO_GET_ADVANCED_COLOR_INFO;
@@ -23,7 +29,7 @@ namespace DisplaySettings.Extensions
 
             if (PInvoke.DisplayConfigGetDeviceInfo(ref getAdvancedColorInfo.header) != 0)
             {
-
+                throw new Exception("Failed to get HDR information.");
             }
 
             return new(getAdvancedColorInfo.Anonymous.value.GetNthBit(0),
@@ -32,6 +38,12 @@ namespace DisplaySettings.Extensions
                 getAdvancedColorInfo.Anonymous.value.GetNthBit(3));
         }
 
+        /// <summary>
+        /// Sets the advanced color information (HDR) for the <see cref="Display"/>.
+        /// </summary>
+        /// <param name="display">The <see cref="Display"/>.</param>
+        /// <param name="state">The preferred state of HDR.</param>
+        /// <remarks>Thanks to <see href="https://github.com/BartoszCichecki/LenovoLegionToolkit"/>.</remarks>
         public static void SetAdvancedColorState(this Display display, bool state)
         {
             var setAdvancedColorState = new DISPLAYCONFIG_SET_ADVANCED_COLOR_STATE();
@@ -45,7 +57,7 @@ namespace DisplaySettings.Extensions
 
             if (PInvoke.DisplayConfigSetDeviceInfo(setAdvancedColorState.header) != 0)
             {
-
+                throw new Exception("Failed to set HDR information.");
             }
         }
 
@@ -85,19 +97,12 @@ namespace DisplaySettings.Extensions
         }
     }
 
-    public readonly struct DisplayAdvancedColorInfo
-    {
-        public bool AdvancedColorSupported { get; }
-        public bool AdvancedColorEnabled { get; }
-        public bool WideColorEnforced { get; }
-        public bool AdvancedColorForceDisabled { get; }
-
-        public DisplayAdvancedColorInfo(bool advancedColorSupported, bool advancedColorEnabled, bool wideColorEnforced, bool advancedColorForceDisabled)
-        {
-            this.AdvancedColorSupported = advancedColorSupported;
-            this.AdvancedColorEnabled = advancedColorEnabled;
-            this.WideColorEnforced = wideColorEnforced;
-            this.AdvancedColorForceDisabled = advancedColorForceDisabled;
-        }
-    }
+    /// <summary>
+    /// Provides information about the advanced color state of a display.
+    /// </summary>
+    /// <param name="AdvancedColorSupported">Whether advanced color (HDR) is supported.</param>
+    /// <param name="AdvancedColorEnabled">Whether advanced color (HDR) is enabled.</param>
+    /// <param name="WideColorEnforced">Whether wide color should be enforced.</param>
+    /// <param name="AdvancedColorForceDisabled">Whether advanced color (HDR) should be disabled.</param>
+    public readonly record struct AdvancedColorInfo(bool AdvancedColorSupported, bool AdvancedColorEnabled, bool WideColorEnforced, bool AdvancedColorForceDisabled);
 }
