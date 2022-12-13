@@ -19,6 +19,7 @@ namespace DisplaySettings.Actions
          * - Create an icon.
          * - Document.
          * - Remove the display service.
+         * - Cite https://github.com/BartoszCichecki/LenovoLegionToolkit for credit!
          */
         public SetHdr(ActionInitializationContext context, DisplayService displayService)
             : base(context) => this.DisplayService = displayService;
