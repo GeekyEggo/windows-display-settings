@@ -2,7 +2,8 @@ using DisplaySettings.Services;
 
 [assembly: Manifest(
     Category = "Display Settings",
-    CategoryIcon = "Images/Plugin/CategoryIcon")]
+    CategoryIcon = "Images/Plugin/CategoryIcon",
+    Icon = "Images/Plugin/Icon")]
 
 #if DEBUG
 if (!System.Diagnostics.Debugger.IsAttached)

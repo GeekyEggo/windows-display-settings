@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -7,8 +7,8 @@
     <Nullable>enable</Nullable>
 
     <Authors>GeekyEggo</Authors>
-    <Product>Display Settings</Product>
-    <Description>Control your display settings with ease!</Description>
+    <Product>Windows Display Settings</Product>
+    <Description>Control your Windows display settings with ease, including HDR control, changing the resolution, and projection!</Description>
     <Version>1.0.0</Version>
   </PropertyGroup>
 

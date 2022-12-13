@@ -1,15 +1,15 @@
 ﻿{
     "Actions": [
         {
-            "Icon": "Images/SetDisplayOrientation/Icon",
-            "Name": "Orientation",
-            "PropertyInspectorPath": "pi/set-display-orientation.html",
+            "Icon": "Images/Project/Icon",
+            "Name": "Project",
+            "PropertyInspectorPath": "pi/project.html",
             "States": [
                 {
-                    "Image": "Images/SetDisplayOrientation/Icon"
+                    "Image": "Images/Project/Icon"
                 }
             ],
-            "UUID": "com.geekyeggo.displaysettings.orientation"
+            "UUID": "com.geekyeggo.windowsdisplaysettings.project"
         },
         {
             "Icon": "Images/SetDisplayResolution/Icon",
@@ -20,18 +20,18 @@
                     "Image": "Images/SetDisplayResolution/Icon"
                 }
             ],
-            "UUID": "com.geekyeggo.displaysettings.resolution"
+            "UUID": "com.geekyeggo.windowsdisplaysettings.resolution"
         },
         {
-            "Icon": "Images/Project/Icon",
-            "Name": "Project",
-            "PropertyInspectorPath": "pi/project.html",
+            "Icon": "Images/SetDisplayOrientation/Icon",
+            "Name": "Orientation",
+            "PropertyInspectorPath": "pi/set-display-orientation.html",
             "States": [
                 {
-                    "Image": "Images/Project/Icon"
+                    "Image": "Images/SetDisplayOrientation/Icon"
                 }
             ],
-            "UUID": "com.geekyeggo.displaysettings.project"
+            "UUID": "com.geekyeggo.windowsdisplaysettings.orientation"
         },
         {
             "Icon": "Images/SetAdvancedColor/Icon",
@@ -42,16 +42,16 @@
                     "Image": "Images/SetAdvancedColor/Icon"
                 }
             ],
-            "UUID": "com.geekyeggo.displaysettings.usehdr"
+            "UUID": "com.geekyeggo.windowsdisplaysettings.usehdr"
         }
     ],
     "Author": "GeekyEggo",
     "Category": "Display Settings",
     "CategoryIcon": "Images/Plugin/CategoryIcon",
     "CodePath": "DisplaySettings.exe",
-    "Description": "Control your display settings with ease!",
-    "Icon": "",
-    "Name": "Display Settings",
+    "Description": "Control your Windows display settings with ease, including HDR control, changing the resolution, and projection!",
+    "Icon": "Images/Plugin/Icon",
+    "Name": "Windows Display Settings",
     "OS": [
         {
             "MinimumVersion": "10",
