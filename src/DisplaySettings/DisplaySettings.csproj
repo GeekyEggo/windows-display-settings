@@ -5,6 +5,7 @@
     <TargetFramework>net7.0-windows</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <PublishSingleFile>true</PublishSingleFile>
 
     <Authors>GeekyEggo</Authors>
     <Product>Windows Display Settings</Product>
