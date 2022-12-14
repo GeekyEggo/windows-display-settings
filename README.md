@@ -11,8 +11,8 @@
 Windows Display Settings, for Stream Deck, lets you control your display settings with ease!
 
 -   Use HDR (per monitor!)
--   Resolution
--   Orientation
+-   Set Resolution
+-   Change Orientation
 -   Project (Extend, Duplicate, etc.)
 
 ## :page_with_curl: Licence
