@@ -10,7 +10,7 @@ namespace DisplaySettings.Actions
         Icon = "Images/SetDisplayOrientation/Icon",
         StateImage = "Images/SetDisplayOrientation/Icon",
         PropertyInspectorPath = "pi/set-display-orientation.html",
-        SortIndex = 2)]
+        SortIndex = 3)]
     public class SetDisplayOrientation : StreamDeckAction
     {
         /// <summary>

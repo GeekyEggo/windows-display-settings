@@ -2,7 +2,6 @@ namespace DisplaySettings.Services
 {
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
-    using System.Management;
     using System.Runtime.Versioning;
     using DisplaySettings.Extensions;
     using StreamDeck.Extensions.PropertyInspectors;
@@ -14,11 +13,6 @@ namespace DisplaySettings.Services
     [SupportedOSPlatform("windows")]
     public static class DisplayService
     {
-        /// <summary>
-        /// Gets the cache containing the resolutions.
-        /// </summary>
-        private static Lazy<IReadOnlyCollection<Resolution>> Resolutions { get; } = new Lazy<IReadOnlyCollection<Resolution>>(LoadResolutions, true);
-
         /// <summary>
         /// Gets the available displays.
         /// </summary>
@@ -45,12 +39,22 @@ namespace DisplaySettings.Services
         /// <summary>
         /// Gets the available resolutions.
         /// </summary>
+        /// <param name="displayName">The display name.</param>
         /// <returns>The resolutions.</returns>
-        public static IEnumerable<DataSourceItem> GetResolutions()
+        public static IEnumerable<DataSourceItem> GetResolutions(string displayName)
         {
-            foreach (var resolution in Resolutions.Value)
+            if (TryGetDisplay(displayName, out var display))
             {
-                yield return new DataSourceItem(resolution.ToString(), resolution.ToString());
+                return display.GetPossibleSettings()
+                    .Select(s => new Resolution(s.Resolution.Width, s.Resolution.Height, display.CurrentSetting.Orientation))
+                    .Distinct()
+                    .OrderByDescending(r => r.Height)
+                    .ThenByDescending(r => r.Width)
+                    .Select(r => r.ToDataSourceItem());
+            }
+            else
+            {
+                return new[] { new DataSourceItem(string.Empty, "No resolutions found", disabled: true) };
             }
         }
 
@@ -72,30 +76,12 @@ namespace DisplaySettings.Services
             return false;
         }
 
+        /// <summary>
+        /// Converts the <see cref="Display"/> to a <see cref="DataSourceItem"/>
+        /// </summary>
+        /// <param name="display">The <see cref="Display"/>.</param>
+        /// <returns>The converted <see cref="DataSourceItem"/>.</returns>
         private static DataSourceItem ToDataSourceItem(Display display)
             => new DataSourceItem(display.DisplayName, display.ToPathDisplayTarget().FriendlyName, disabled: !display.IsAvailable);
-
-        /// <summary>
-        /// Loads the available resolutions.
-        /// </summary>
-        /// <returns>The resolutions, in order.</returns>
-        private static IReadOnlyCollection<Resolution> LoadResolutions()
-        {
-            var resolutions = new HashSet<Resolution>();
-
-            using var searcher = new ManagementObjectSearcher(new ManagementScope(), new ObjectQuery("SELECT * FROM CIM_VideoControllerResolution"));
-            foreach (var item in searcher.Get())
-            {
-                if (Resolution.TryCreate(item["HorizontalResolution"]?.ToString(), item["VerticalResolution"]?.ToString(), out var resolution))
-                {
-                    resolutions.Add(resolution);
-                }
-            }
-
-            return resolutions
-                .OrderByDescending(r => r.Height)
-                .ThenByDescending(r => r.Width)
-                .ToArray();
-        }
     }
 }

@@ -2,21 +2,45 @@ namespace DisplaySettings.Services
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
+    using System.Text.Json.Serialization;
+    using WindowsDisplayAPI.Native.DeviceContext;
 
     /// <summary>
     /// Provides information about a display resolution.
     /// </summary>
-    public struct Resolution
+    public readonly struct Resolution
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Resolution"/> struct.
         /// </summary>
         /// <param name="width">The width.</param>
         /// <param name="height">The height.</param>
+        [JsonConstructor]
         public Resolution(int width, int height)
         {
             this.Height = height;
             this.Width = width;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Resolution"/> struct.
+        /// </summary>
+        /// <param name="width">The width.</param>
+        /// <param name="height">The height.</param>
+        /// <param name="orientation">The orientation.</param>
+        public Resolution(int width, int height, DisplayOrientation orientation)
+        {
+            this.Orientation = orientation;
+            if (this.Orientation is DisplayOrientation.Identity or DisplayOrientation.Rotate180Degree)
+            {
+                this.Height = height;
+                this.Width = width;
+            }
+            else
+            {
+                this.Height = width;
+                this.Width = height;
+            }
         }
 
         /// <summary>
@@ -77,6 +101,11 @@ namespace DisplaySettings.Services
         public int Width { get; }
 
         /// <summary>
+        /// Gets the orientation.
+        /// </summary>
+        private DisplayOrientation Orientation { get; } = DisplayOrientation.Identity;
+
+        /// <summary>
         /// Gets the height.
         /// </summary>
         public int Height { get; }
@@ -84,6 +113,15 @@ namespace DisplaySettings.Services
         /// <inheritdoc/>
         public override int GetHashCode()
             => HashCode.Combine(this.Width, this.Height);
+
+        /// <summary>
+        /// Converts this instance to a <see cref="DataSourceItem"/>.
+        /// </summary>
+        /// <returns>The <see cref="DataSourceItem"/>.</returns>
+        public DataSourceItem ToDataSourceItem()
+            => this.Orientation is DisplayOrientation.Identity or DisplayOrientation.Rotate180Degree
+            ? new DataSourceItem(this.ToString(), this.ToString())
+            : new DataSourceItem(this.ToString(), $"{this.Height} x {this.Width}");
 
         /// <inheritdoc/>
         public override string ToString()

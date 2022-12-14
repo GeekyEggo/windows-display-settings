@@ -1,15 +1,15 @@
 ﻿{
     "Actions": [
         {
-            "Icon": "Images/Project/Icon",
-            "Name": "Project",
-            "PropertyInspectorPath": "pi/project.html",
+            "Icon": "Images/SetAdvancedColor/Icon",
+            "Name": "Use HDR",
+            "PropertyInspectorPath": "pi/set-advanced-color.html",
             "States": [
                 {
-                    "Image": "Images/Project/Icon"
+                    "Image": "Images/SetAdvancedColor/Icon"
                 }
             ],
-            "UUID": "com.geekyeggo.windowsdisplaysettings.project"
+            "UUID": "com.geekyeggo.windowsdisplaysettings.usehdr"
         },
         {
             "Icon": "Images/SetDisplayResolution/Icon",
@@ -34,15 +34,15 @@
             "UUID": "com.geekyeggo.windowsdisplaysettings.orientation"
         },
         {
-            "Icon": "Images/SetAdvancedColor/Icon",
-            "Name": "Use HDR",
-            "PropertyInspectorPath": "pi/set-advanced-color.html",
+            "Icon": "Images/Project/Icon",
+            "Name": "Project",
+            "PropertyInspectorPath": "pi/project.html",
             "States": [
                 {
-                    "Image": "Images/SetAdvancedColor/Icon"
+                    "Image": "Images/Project/Icon"
                 }
             ],
-            "UUID": "com.geekyeggo.windowsdisplaysettings.usehdr"
+            "UUID": "com.geekyeggo.windowsdisplaysettings.project"
         }
     ],
     "Author": "GeekyEggo",

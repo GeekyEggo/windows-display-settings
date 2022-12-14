@@ -14,7 +14,7 @@ namespace DisplaySettings.Actions
         Icon = "Images/SetAdvancedColor/Icon",
         StateImage = "Images/SetAdvancedColor/Icon",
         PropertyInspectorPath = "pi/set-advanced-color.html",
-        SortIndex = 4)]
+        SortIndex = 1)]
     public class SetAdvancedColor : StreamDeckAction
     {
         /// <summary>

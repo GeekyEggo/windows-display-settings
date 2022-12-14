@@ -13,7 +13,7 @@ namespace DisplaySettings.Actions
         Icon = "Images/Project/Icon",
         StateImage = "Images/Project/Icon",
         PropertyInspectorPath = "pi/project.html",
-        SortIndex = 1)]
+        SortIndex = 4)]
     public class Project : StreamDeckAction
     {
         /// <summary>
