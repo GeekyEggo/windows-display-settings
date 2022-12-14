@@ -1,11 +1,10 @@
 [![beta-version-icon]](https://github.com/GeekyEggo/windows-display-settings/raw/main/dist/com.geekyeggo.windowsdisplaysettings.streamDeckPlugin) [![Twitter icon](https://img.shields.io/static/v1?style=flat-square&message=GeekyEggo&logo=Twitter&label=&color=blue&logoColor=white&labelColor=grey)](https://www.twitter.com/geekyeggo)
 
-<p style="text-align: center">
-    <img src="./assets/Icon.svg" width="300" alt="Windows Display Settings" title="The logo for Windows Display Settings" />
+<p align="center">
+    <img align="center" src="./assets/Icon.svg" width="300" alt="Windows Display Settings" title="The logo for Windows Display Settings" />
 </p>
-<p style="text-align: center; font-size: 2em; font-weight: 600">
-    Windows Display Settings
-</p>
+
+<h1 align="center">Windows Display Settings</h1>
 
 ## ⚡ Actions
 
