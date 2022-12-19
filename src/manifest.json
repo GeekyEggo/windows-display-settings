@@ -1,12 +1,16 @@
 ﻿{
     "Actions": [
         {
-            "Icon": "Images/SetAdvancedColor/Icon",
+            "DisableAutomaticStates": true,
+            "Icon": "Images/SetAdvancedColor/State1",
             "Name": "Use HDR",
             "PropertyInspectorPath": "pi/set-advanced-color.html",
             "States": [
                 {
-                    "Image": "Images/SetAdvancedColor/Icon"
+                    "Image": "Images/SetAdvancedColor/State0"
+                },
+                {
+                    "Image": "Images/SetAdvancedColor/State1"
                 }
             ],
             "UUID": "com.geekyeggo.windowsdisplaysettings.usehdr"
@@ -62,5 +66,5 @@
     "Software": {
         "MinimumVersion": "5.0"
     },
-    "Version": "1.0.0"
+    "Version": "1.1.0"
 }

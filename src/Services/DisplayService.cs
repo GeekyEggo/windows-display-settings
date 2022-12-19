@@ -2,17 +2,27 @@ namespace DisplaySettings.Services
 {
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
-    using System.Runtime.Versioning;
     using DisplaySettings.Extensions;
+    using Microsoft.Win32;
     using StreamDeck.Extensions.PropertyInspectors;
     using WindowsDisplayAPI;
 
     /// <summary>
     /// Provides methods and interaction for displays.
     /// </summary>
-    [SupportedOSPlatform("windows")]
-    public static class DisplayService
+    public sealed class DisplayService : IDisposable
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DisplayService"/> class.
+        /// </summary>
+        public DisplayService()
+            => SystemEvents.DisplaySettingsChanged += this.OnDisplaySettingsChanged;
+
+        /// <summary>
+        /// Occurs when display settings have changed.
+        /// </summary>
+        public event EventHandler? DisplaySettingsChanged;
+
         /// <summary>
         /// Gets the available displays.
         /// </summary>
@@ -64,9 +74,10 @@ namespace DisplaySettings.Services
         /// <param name="displayName">The display name.</param>
         /// <param name="value">The display.</param>
         /// <returns><c>true</c> when the display was found; otherwise <c>false</c>.</returns>
-        public static bool TryGetDisplay(string displayName, [NotNullWhen(true)] out Display? value)
+        public static bool TryGetDisplay(string? displayName, [NotNullWhen(true)] out Display? value)
         {
-            if (Display.GetDisplays().FirstOrDefault(d => d.DisplayName == displayName) is Display display and not null)
+            if (displayName is not null
+                && Display.GetDisplays().FirstOrDefault(d => d.DisplayName == displayName) is Display display and not null)
             {
                 value = display;
                 return true;
@@ -76,6 +87,13 @@ namespace DisplaySettings.Services
             return false;
         }
 
+        /// <inheritdoc/>
+        public void Dispose()
+        {
+            SystemEvents.DisplaySettingsChanged -= this.OnDisplaySettingsChanged;
+            GC.SuppressFinalize(this);
+        }
+
         /// <summary>
         /// Converts the <see cref="Display"/> to a <see cref="DataSourceItem"/>
         /// </summary>
@@ -83,5 +101,13 @@ namespace DisplaySettings.Services
         /// <returns>The converted <see cref="DataSourceItem"/>.</returns>
         private static DataSourceItem ToDataSourceItem(Display display)
             => new DataSourceItem(display.DisplayName, display.ToPathDisplayTarget().FriendlyName, disabled: !display.IsAvailable);
+
+        /// <summary>
+        /// Propagate <see cref="SystemEvents.DisplaySettingsChanged"/> to <see cref="DisplaySettingsChanged"/>.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void OnDisplaySettingsChanged(object? sender, EventArgs e)
+            => this.DisplaySettingsChanged?.Invoke(sender, e);
     }
 }

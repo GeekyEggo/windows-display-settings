@@ -8,6 +8,7 @@ namespace WindowsDisplaySettings
     using System.Diagnostics.CodeAnalysis;
     using DisplaySettings.Actions;
     using DisplaySettings.Services;
+    using Microsoft.Extensions.DependencyInjection;
 
     /// <summary>
     /// Windows Display Settings.
@@ -31,7 +32,9 @@ namespace WindowsDisplaySettings
             }
 #endif
 
-            StreamDeckPlugin.Create()
+            StreamDeckPlugin.CreateBuilder()
+                .ConfigureServices(s => s.AddSingleton<DisplayService>())
+                .Build()
                 .MapPropertyInspectorDataSource("getDisplays", () => DisplayService.GetDisplays())
                 .MapPropertyInspectorDataSource("getDisplaysWithHdrSupport", () => DisplayService.GetDisplaysWithHdrSupport())
                 .RunPlugin();

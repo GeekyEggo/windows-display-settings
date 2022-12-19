@@ -8,7 +8,7 @@ namespace DisplaySettings.Actions
     using DisplaySettings.Services;
 
     /// <summary>
-    /// Provides an action capable of setting the resolution of a display.
+    /// Sets the display resolution.
     /// </summary>
     [Action(
         Name = "Resolution",

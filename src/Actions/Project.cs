@@ -6,7 +6,7 @@ namespace DisplaySettings.Actions
     using WindowsDisplayAPI.Native.DisplayConfig;
 
     /// <summary>
-    /// Provides an action capable of setting the display configuration, i.e. "Extend", "Clone" etc.
+    /// Sets the preferred display projection, i.e. "Extend", "Clone" etc.
     /// </summary>
     [Action(
         Name = "Project",

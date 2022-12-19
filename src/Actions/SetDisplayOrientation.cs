@@ -5,6 +5,9 @@ namespace DisplaySettings.Actions
     using DisplaySettings.Services;
     using WindowsDisplayAPI.Native.DeviceContext;
 
+    /// <summary>
+    /// Sets the orientation of a display.
+    /// </summary>
     [Action(
         Name = "Orientation",
         Icon = "Images/SetDisplayOrientation/Icon",

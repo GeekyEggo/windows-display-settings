@@ -9,12 +9,13 @@
     <Authors>GeekyEggo</Authors>
     <Product>Windows Display Settings</Product>
     <Description>Control your Windows display settings with ease, including HDR control, changing the resolution, and projection!</Description>
-    <Version>1.0.0</Version>
+    <Version>1.1.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="StreamDeck" Version="0.0.5-beta" />
-    <PackageReference Include="System.Management" Version="7.0.0-rc.1.22426.10" />
+    <PackageReference Include="Microsoft.Win32.SystemEvents" Version="7.0.0" />
+    <PackageReference Include="StreamDeck" Version="0.0.6-beta" />
+    <PackageReference Include="System.Management" Version="7.0.0" />
     <PackageReference Include="WindowsDisplayAPI" Version="1.3.0.13" />
     <PackageReference Include="Microsoft.Windows.CsWin32" Version="0.2.164-beta">
       <PrivateAssets>all</PrivateAssets>
