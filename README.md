@@ -1,7 +1,9 @@
 [![download-count]](https://apps.elgato.com/plugins/com.geekyeggo.windowsdisplaysettings) [![beta-version-icon]](https://github.com/GeekyEggo/windows-display-settings/raw/main/dist/com.geekyeggo.windowsdisplaysettings.streamDeckPlugin) [![Twitter icon](https://img.shields.io/static/v1?style=flat-square&message=GeekyEggo&logo=Twitter&label=&color=blue&logoColor=white&labelColor=grey)](https://www.twitter.com/geekyeggo)
 
 <p align="center">
-    <img align="center" src="./assets/Icon.svg" width="300" alt="Windows Display Settings" title="The logo for Windows Display Settings" />
+    <a href="https://apps.elgato.com/plugins/com.geekyeggo.windowsdisplaysettings" rel="nofollow">
+        <img align="center" src="./assets/Icon.svg" width="300" alt="Windows Display Settings" title="Download Windows Display Settings from the Elgato Stream Deck store" />
+    </a>
 </p>
 
 <h1 align="center">Windows Display Settings</h1>
