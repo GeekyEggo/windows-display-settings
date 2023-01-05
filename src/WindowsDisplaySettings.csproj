@@ -9,7 +9,7 @@
     <Authors>GeekyEggo</Authors>
     <Product>Windows Display Settings</Product>
     <Description>Control your Windows display settings with ease, including HDR control, changing the resolution, and projection!</Description>
-    <Version>1.1.0</Version>
+    <Version>1.1.1</Version>
   </PropertyGroup>
 
   <ItemGroup>
