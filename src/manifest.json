@@ -1,4 +1,5 @@
-﻿{
+{
+    "$schema": "https://schemas.elgato.com/streamdeck/plugins/manifest.json",
     "Actions": [
         {
             "DisableAutomaticStates": true,
@@ -64,7 +65,8 @@
     ],
     "SDKVersion": 2,
     "Software": {
-        "MinimumVersion": "5.0"
+        "MinimumVersion": "6.4"
     },
-    "Version": "1.1.1"
+    "Version": "1.2.0.0",
+    "UUID": "com.geekyeggo.windowsdisplaysettings"
 }
