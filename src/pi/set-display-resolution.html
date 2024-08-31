@@ -9,7 +9,14 @@
         <sdpi-select setting="displayName" datasource="getDisplays" label-setting="displayFriendlyName" loading="Loading..." placeholder="Please select"></sdpi-select>
     </sdpi-item>
     <sdpi-item label="Resolution">
-        <sdpi-select setting="resolution"  datasource="getResolutions" loading=" " placeholder="Please select"></sdpi-select>
+        <sdpi-select setting="resolution" datasource="getResolutions" loading=" " placeholder="Please select"></sdpi-select>
+    </sdpi-item>
+    <sdpi-item label="Scaling Mode">
+        <sdpi-select setting="scalingMode" placeholder="Default" value-type="number">
+            <option value="0">Default</option>
+            <option value="1">Stretch</option>
+            <option value="2">Center</option>
+        </sdpi-select>
     </sdpi-item>
 </body>
 </html>

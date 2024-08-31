@@ -6,6 +6,7 @@ namespace DisplaySettings.Actions
     using DisplaySettings.Extensions;
     using DisplaySettings.Serialization;
     using DisplaySettings.Services;
+    using WindowsDisplayAPI.Native.DeviceContext;
 
     /// <summary>
     /// Sets the display resolution.
@@ -48,7 +49,7 @@ namespace DisplaySettings.Actions
             if (args.Payload.GetSettings<Settings>() is { DisplayName: not null, Resolution: not null } settings
                 && DisplayService.TryGetDisplay(settings.DisplayName, out var display))
             {
-                display.SetSettings(resolution: settings.Resolution.Value);
+                display.SetSettings(resolution: settings.Resolution.Value, scalingMode: settings.ScalingMode);
                 await this.ShowOkAsync();
             }
             else
@@ -80,6 +81,6 @@ namespace DisplaySettings.Actions
         /// <summary>
         /// Provides settings for the <see cref="SetDisplayResolution"/>.
         /// </summary>
-        public record Settings(string? DisplayName, [property: JsonConverter(typeof(ResolutionConverter))] Resolution? Resolution);
+        public record Settings(string? DisplayName, [property: JsonConverter(typeof(ResolutionConverter))] Resolution? Resolution, DisplayFixedOutput ScalingMode = DisplayFixedOutput.Default);
     }
 }
